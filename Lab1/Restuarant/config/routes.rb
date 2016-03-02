@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+
+  get 'restaurants' => 'pages#index'
+  get '/restaurants/:id' => 'pages#show', as: :restaurant
+  get '/restaurants/new' => 'pages#new'
+  get '/restaurants/:id/edit' => 'pages#edit'
+  post '/restaurants' => 'pages#create'
+  put '/restaurants/:id' => 'pages#update'
+  patch '/restaurants/:id' => 'pages#update'
+  delete '/restaurants/:id' => 'pages#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

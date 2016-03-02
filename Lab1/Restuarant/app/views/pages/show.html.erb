@@ -1,0 +1,35 @@
+<html>
+
+	<head class="mui-appbar">
+
+		<link href="//cdn.muicss.com/mui-0.4.7/css/mui.min.css" rel="stylesheet" type="text/css" />
+		<script src="//cdn.muicss.com/mui-0.4.7/js/mui.min.js"></script>
+
+	</head>
+
+	<header class="mui-appbar mui-container">
+
+		<h1><%=@restaurant.name%></h1>
+
+	</header>
+
+	<body>
+
+		<div class="mui-container">
+
+				<section>
+
+					<h3><%= @restaurant.address %></h3>
+
+					<h3><%= @restaurant.phone %></h3> 
+
+					<h3><%= @restaurant.description %></h3>
+  
+
+				</section>
+
+		</div>
+
+	</body>
+
+</html>
