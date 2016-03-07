@@ -21,17 +21,15 @@
 
 				<section>
 
-					<h2 class="mui-btn mui-btn--primary" style="width: 30%;"><%= r.name %></h2>
-
-		<!--			<p><%= r.description %></p>
-
-					<h4><%= r.address %></h4>
-
-					<h4><%= r.phone %></h4>   -->
+					<%= button_to (r.name), restaurant_path(r), {method: 'get', class: 'mui-btn mui-btn--primary'} %>
 
 				</section>
 
 			<% end %>
+
+			<br>
+
+			<%= button_to ("New Restaurant"), new_restaurant_path(), {method: 'get', class: 'mui-btn mui-btn--primary'} %>
 
 		</div>
 

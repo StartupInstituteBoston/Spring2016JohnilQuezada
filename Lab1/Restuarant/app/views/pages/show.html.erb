@@ -28,6 +28,9 @@
 
 				</section>
 
+				<%= button_to "Edit", edit_restaurant_path(@restaurant), {method: "get", class: 'mui-btn mui-btn--primary'} %>
+				<%= button_to "Delete", delete_restaurant_path(@restaurant), {method: "delete", class: 'mui-btn mui-btn--danger'} %>
+
 		</div>
 
 	</body>
