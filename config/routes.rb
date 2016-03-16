@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :owners
   root 'pages#index'
   get '/restaurants' => 'pages#index'
   get '/restaurants/new' => 'pages#new', as: :new_restaurant
