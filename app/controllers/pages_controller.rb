@@ -14,7 +14,6 @@ class PagesController < ApplicationController
 			@markers+= MARKER_PARAMETER + restaurant.address
 		end
 		@mapUrl = BASE_URL + @markers + KEY_PARAMETER
-		puts @mapUrl
 
 	end
 
