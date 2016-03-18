@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+	include Devise::Controllers::Helpers
 
 	API_KEY = "AIzaSyDeRjJ-3FOHFDYWlEAkwv_CQEpkoeA7azw"
 	BASE_URL = "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=700x300"
@@ -7,6 +8,7 @@ class PagesController < ApplicationController
 	KEY_PARAMETER = "&key=" + API_KEY
 
 	def index
+		@loggedIn = owner_signed_in?
 		@restaurants = Restaurant.all
 		@markers = ""
 		@restaurants.each do |restaurant|
@@ -21,14 +23,16 @@ class PagesController < ApplicationController
 		@restaurant = Restaurant.find(params[:id])
 		@address = @restaurant.address.gsub(' ', '%20')
 		@mapUrl = BASE_URL + MARKER_PARAMETER + @address + KEY_PARAMETER
+		@loggedIn = (current_owner && current_owner.id == @restaurant.owner.id)
 	end
 
 	def new
-		@restaurant = Restaurant.new
+		@restaurant = current_owner.restaurants.build
+
 	end
 
 	def create
-		@restaurant = Restaurant.new(restaurant_params)
+		@restaurant = current_owner.restaurants.build(restaurant_params)
 		if (@restaurant.save)
 			redirect_to ({action: 'index'})
 		else
@@ -37,11 +41,11 @@ class PagesController < ApplicationController
 	end
 
 	def edit
-		@restaurant = Restaurant.find(params[:id])
+		@restaurant = current_owner.restaurants.find(params[:id])
 	end
 
 	def update
-		@restaurant = Restaurant.find(params[:id])
+		@restaurant = current_owner.restaurants.find(params[:id])
 		if (@restaurant.update(restaurant_params))
 			redirect_to @restaurant
 		else
@@ -50,7 +54,7 @@ class PagesController < ApplicationController
 	end
 
 	def destroy
-		@restaurant = Restaurant.find(params[:id])
+		@restaurant = current_owner.restaurants.find(params[:id])
 		@restaurant.destroy
 		redirect_to ({action: 'index'})
 	end

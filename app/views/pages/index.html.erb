@@ -13,6 +13,18 @@
 
 	</header>
 
+	<header>
+
+	<h1> <% unless @loggedIn %>
+			<%= button_to ("Log In"), '/owners/sign_in', {method: 'get', class: 'mui-btn mui-btn--danger'} %>
+		 <% else %>
+		 	<%= button_to ("Log Out"), '/owners/sign_out', {method: 'delete', class: 'mui-btn mui-btn--danger'} %>
+		 <% end %>
+
+	</h1>
+
+	</header>
+
 	<body>
 
 		<div class="mui-container">

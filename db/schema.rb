@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316190529) do
+ActiveRecord::Schema.define(version: 20160318182108) do
 
   create_table "owners", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -39,6 +39,10 @@ ActiveRecord::Schema.define(version: 20160316190529) do
     t.string   "phone",       limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "owner_id",    limit: 4
   end
 
+  add_index "restaurants", ["owner_id"], name: "index_restaurants_on_owner_id", using: :btree
+
+  add_foreign_key "restaurants", "owners"
 end
